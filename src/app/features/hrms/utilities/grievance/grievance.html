@@ -1,0 +1,52 @@
+<section class="hrms-page">
+  <div class="hrms-panel hrms-panel--framed">
+    <h1 class="hrms-title">Add Grievance</h1>
+
+    <p class="hrms-note">
+      This form is used to file a formal grievance. All sections must be completed and will serve as the source document for the grievance process.
+      All supporting documents must be attached to this grievance form at the time the grievance is filed.
+    </p>
+
+    <div class="hrms-form-shell hrms-stack mt-4">
+      <div class="hrms-grid hrms-grid--2">
+        <div>
+          <label class="hrms-field-label" for="incidentDate">Date of Incident</label>
+          <input id="incidentDate" class="hrms-input" type="date">
+        </div>
+        <div>
+          <label class="hrms-field-label" for="incidentTime">Time of Incident</label>
+          <input id="incidentTime" class="hrms-input" type="time">
+        </div>
+      </div>
+
+      <div class="hrms-grid hrms-grid--2">
+        <div>
+          <label class="hrms-field-label" for="incidentLocation">Location of Incident</label>
+          <input id="incidentLocation" class="hrms-input" type="text">
+        </div>
+        <div>
+          <label class="hrms-field-label" for="complaintAgainst">Select Complaint Against</label>
+          <select id="complaintAgainst" class="hrms-select">
+            <option>Manager</option>
+            <option>Colleague</option>
+            <option>Process</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="incidentDetails">Please describe the incident in details</label>
+        <textarea id="incidentDetails" class="hrms-textarea"></textarea>
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="witnessDetails">If there are others who witnessed the incident, please provide details below</label>
+        <textarea id="witnessDetails" class="hrms-textarea"></textarea>
+      </div>
+
+      <div class="text-center pt-2">
+        <button class="hrms-btn" type="button">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>

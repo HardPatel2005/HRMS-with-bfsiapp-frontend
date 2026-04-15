@@ -1,0 +1,127 @@
+.
+├── .angular
+│   └── cache
+│       └── 21.1.2
+│           └── BFSI-Frontend
+│               ├── .tsbuildinfo
+│               └── vite
+│                   ├── deps
+│                   │   ├── @angular_core.js
+│                   │   ├── @angular_core.js.map
+│                   │   ├── @angular_platform-browser.js
+│                   │   ├── @angular_platform-browser.js.map
+│                   │   ├── @angular_router.js
+│                   │   ├── @angular_router.js.map
+│                   │   ├── _metadata.json
+│                   │   ├── chunk-25FL77MO.js
+│                   │   ├── chunk-25FL77MO.js.map
+│                   │   ├── chunk-KH6UVQKE.js
+│                   │   ├── chunk-KH6UVQKE.js.map
+│                   │   └── package.json
+│                   └── deps_ssr
+│                       ├── @angular_core.js
+│                       ├── @angular_core.js.map
+│                       ├── @angular_platform-browser.js
+│                       ├── @angular_platform-browser.js.map
+│                       ├── @angular_platform-server_init.js
+│                       ├── @angular_platform-server_init.js.map
+│                       ├── @angular_router.js
+│                       ├── @angular_router.js.map
+│                       ├── @angular_ssr.js
+│                       ├── @angular_ssr.js.map
+│                       ├── @angular_ssr_node.js
+│                       ├── @angular_ssr_node.js.map
+│                       ├── _metadata.json
+│                       ├── chunk-6DU2HRTW.js
+│                       ├── chunk-6DU2HRTW.js.map
+│                       ├── chunk-KY7IY2L5.js
+│                       ├── chunk-KY7IY2L5.js.map
+│                       ├── chunk-OEN2L32I.js
+│                       ├── chunk-OEN2L32I.js.map
+│                       ├── chunk-QOCZLZUW.js
+│                       ├── chunk-QOCZLZUW.js.map
+│                       ├── chunk-STR6BEU5.js
+│                       ├── chunk-STR6BEU5.js.map
+│                       ├── express.js
+│                       ├── express.js.map
+│                       ├── package.json
+│                       ├── xhr2-E5RTESSH.js
+│                       └── xhr2-E5RTESSH.js.map
+├── .editorconfig
+├── .github
+│   └── appmod
+│       └── appcat
+├── README.md
+├── angular.json
+├── package-lock.json
+├── package.json
+├── public
+│   └── favicon.ico
+├── src
+│   ├── app
+│   │   ├── app.config.server.ts
+│   │   ├── app.config.ts
+│   │   ├── app.html
+│   │   ├── app.routes.server.ts
+│   │   ├── app.routes.ts
+│   │   ├── app.scss
+│   │   ├── app.spec.ts
+│   │   ├── app.ts
+│   │   ├── core
+│   │   │   ├── core-module.ts
+│   │   │   └── services
+│   │   │       ├── api.service.ts
+│   │   │       ├── customer.service.ts
+│   │   │       ├── customer.spec.ts
+│   │   │       └── customer.ts
+│   │   ├── features
+│   │   │   └── customer
+│   │   │       ├── customer-detail
+│   │   │       │   ├── customer-detail.html
+│   │   │       │   ├── customer-detail.scss
+│   │   │       │   ├── customer-detail.spec.ts
+│   │   │       │   └── customer-detail.ts
+│   │   │       ├── customer-form
+│   │   │       │   ├── customer-form.html
+│   │   │       │   ├── customer-form.scss
+│   │   │       │   ├── customer-form.spec.ts
+│   │   │       │   └── customer-form.ts
+│   │   │       ├── customer-list
+│   │   │       │   ├── customer-list.html
+│   │   │       │   ├── customer-list.scss
+│   │   │       │   └── customer-list.ts
+│   │   │       ├── customer-module.ts
+│   │   │       └── customer-routing-module.ts
+│   │   ├── models
+│   │   │   └── customer.model.ts
+│   │   └── shared
+│   │       ├── footer
+│   │       │   ├── footer.html
+│   │       │   ├── footer.scss
+│   │       │   ├── footer.spec.ts
+│   │       │   └── footer.ts
+│   │       ├── loading-spinner
+│   │       │   ├── loading-spinner.html
+│   │       │   ├── loading-spinner.scss
+│   │       │   ├── loading-spinner.spec.ts
+│   │       │   └── loading-spinner.ts
+│   │       ├── navbar
+│   │       │   ├── navbar.html
+│   │       │   ├── navbar.scss
+│   │       │   ├── navbar.spec.ts
+│   │       │   └── navbar.ts
+│   │       └── shared-module.ts
+│   ├── environments
+│   │   ├── environment.development.ts
+│   │   └── environment.ts
+│   ├── index.html
+│   ├── main.server.ts
+│   ├── main.ts
+│   ├── server.ts
+│   └── styles.scss
+├── tree_structure.txt
+├── tsconfig.app.json
+├── tsconfig.json
+└── tsconfig.spec.json
+
+27 directories, 98 files

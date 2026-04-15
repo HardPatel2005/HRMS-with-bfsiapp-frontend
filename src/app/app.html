@@ -1,0 +1,7 @@
+<app-navbar></app-navbar>
+<main class="min-vh-100">
+  <router-outlet></router-outlet>
+</main>
+@if (!(isLoggedIn$ | async)) {
+  <app-footer></app-footer>
+}

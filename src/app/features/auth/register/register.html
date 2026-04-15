@@ -1,0 +1,79 @@
+<app-loading-spinner [isLoading]="loading" message="Creating account..."></app-loading-spinner>
+
+<div class="container py-4 py-md-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-9 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h3 class="mb-3">Create Account</h3>
+          <p class="text-muted mb-4">Register to onboard customers and manage BFSI operations.</p>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input
+                id="fullName"
+                type="text"
+                formControlName="fullName"
+                class="form-control"
+                [class.is-invalid]="hasError('fullName')"
+                autocomplete="name"
+              />
+              <div class="invalid-feedback" *ngIf="hasError('fullName')">Name must be at least 3 characters.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                class="form-control"
+                [class.is-invalid]="hasError('email')"
+                autocomplete="email"
+              />
+              <div class="invalid-feedback" *ngIf="hasError('email')">Enter a valid email address.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                id="password"
+                type="password"
+                formControlName="password"
+                class="form-control"
+                [class.is-invalid]="hasError('password')"
+                autocomplete="new-password"
+              />
+              <div class="invalid-feedback" *ngIf="hasError('password')">
+                Password must be 8+ chars with uppercase, lowercase, number, and special character.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input
+                id="confirmPassword"
+                type="password"
+                formControlName="confirmPassword"
+                class="form-control"
+                [class.is-invalid]="hasError('confirmPassword') || form.errors?.['passwordMismatch']"
+                autocomplete="new-password"
+              />
+              <div class="invalid-feedback" *ngIf="hasError('confirmPassword') || form.errors?.['passwordMismatch']">
+                Password and confirm password must match.
+              </div>
+            </div>
+
+            <button class="btn btn-primary w-100" type="submit">Register</button>
+          </form>
+
+          <p class="mt-3 mb-0 text-center">
+            Already have an account?
+            <a routerLink="/login">Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

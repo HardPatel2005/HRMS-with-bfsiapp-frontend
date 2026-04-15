@@ -1,0 +1,227 @@
+<app-loading-spinner [isLoading]="loading" [message]="isEditMode ? 'Updating customer...' : 'Creating customer...'"></app-loading-spinner>
+
+<div class="container py-4 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0">
+            <i class="bi" [class.bi-person-plus-fill]="!isEditMode" [class.bi-pencil-fill]="isEditMode"></i>
+            {{isEditMode ? 'Edit Customer' : 'Add New Customer'}}
+          </h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Personal Information -->
+            <h5 class="border-bottom pb-2 mb-3">
+              <i class="bi bi-person-badge me-2"></i>Personal Information
+            </h5>
+            <div class="row g-3 mb-4">
+              <div class="col-md-4">
+                <label class="form-label">First Name *</label>
+                <input type="text" class="form-control" formControlName="firstName"
+                  [class.is-invalid]="hasError('firstName', 'required') || hasError('firstName', 'maxlength')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('firstName')">
+                  {{ getErrorMessage('firstName') }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Last Name *</label>
+                <input type="text" class="form-control" formControlName="lastName"
+                  [class.is-invalid]="hasError('lastName', 'required') || hasError('lastName', 'maxlength')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('lastName')">
+                  {{ getErrorMessage('lastName') }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Middle Name</label>
+                <input type="text" class="form-control" formControlName="middleName"
+                  [class.is-invalid]="hasError('middleName', 'maxlength')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('middleName')">
+                  {{ getErrorMessage('middleName') }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Date of Birth *</label>
+                <input type="date" class="form-control" formControlName="dateOfBirth"
+                  [class.is-invalid]="hasError('dateOfBirth', 'required')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('dateOfBirth')">
+                  {{ getErrorMessage('dateOfBirth') }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Gender *</label>
+                <select class="form-select" formControlName="gender"
+                  [class.is-invalid]="hasError('gender', 'required')">
+                  <option value="">Select Gender</option>
+                  <option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="getErrorMessage('gender')">
+                  {{ getErrorMessage('gender') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Information -->
+            <h5 class="border-bottom pb-2 mb-3">
+              <i class="bi bi-telephone me-2"></i>Contact Information
+            </h5>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-control" formControlName="email"
+                  [class.is-invalid]="hasError('email', 'required') || hasError('email', 'email')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('email')">
+                  {{ getErrorMessage('email') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" formControlName="phoneNumber"
+                  [class.is-invalid]="hasError('phoneNumber', 'required') || hasError('phoneNumber', 'maxlength')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('phoneNumber')">
+                  {{ getErrorMessage('phoneNumber') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Alternate Phone</label>
+                <input type="tel" class="form-control" formControlName="alternatePhoneNumber"
+                  [class.is-invalid]="hasError('alternatePhoneNumber', 'maxlength')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('alternatePhoneNumber')">
+                  {{ getErrorMessage('alternatePhoneNumber') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Address Information -->
+            <h5 class="border-bottom pb-2 mb-3">
+              <i class="bi bi-geo-alt me-2"></i>Address Information
+            </h5>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Address Line 1 *</label>
+                <input type="text" class="form-control" formControlName="addressLine1"
+                  [class.is-invalid]="hasError('addressLine1', 'required')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('addressLine1')">
+                  {{ getErrorMessage('addressLine1') }}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Address Line 2</label>
+                <input type="text" class="form-control" formControlName="addressLine2">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">City *</label>
+                <input type="text" class="form-control" formControlName="city"
+                  [class.is-invalid]="hasError('city', 'required')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('city')">
+                  {{ getErrorMessage('city') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">State *</label>
+                <input type="text" class="form-control" formControlName="state"
+                  [class.is-invalid]="hasError('state', 'required')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('state')">
+                  {{ getErrorMessage('state') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Postal Code *</label>
+                <input type="text" class="form-control" formControlName="postalCode"
+                  [class.is-invalid]="hasError('postalCode', 'required')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('postalCode')">
+                  {{ getErrorMessage('postalCode') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Country *</label>
+                <input type="text" class="form-control" formControlName="country"
+                  [class.is-invalid]="hasError('country', 'required')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('country')">
+                  {{ getErrorMessage('country') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Identification & Financial Information -->
+            <h5 class="border-bottom pb-2 mb-3">
+              <i class="bi bi-credit-card me-2"></i>Identification & Financial Information
+            </h5>
+            <div class="row g-3 mb-4">
+              <div class="col-md-4">
+                <label class="form-label">Identification Type *</label>
+                <select class="form-select" formControlName="identificationType"
+                  [class.is-invalid]="hasError('identificationType', 'required')">
+                  <option value="">Select Type</option>
+                  <option *ngFor="let type of identificationTypes" [value]="type">{{type}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="getErrorMessage('identificationType')">
+                  {{ getErrorMessage('identificationType') }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Identification Number *</label>
+                <input type="text" class="form-control" formControlName="identificationNumber"
+                  [class.is-invalid]="hasError('identificationNumber', 'required')">
+                <div class="invalid-feedback" *ngIf="getErrorMessage('identificationNumber')">
+                  {{ getErrorMessage('identificationNumber') }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Customer Type *</label>
+                <select class="form-select" formControlName="customerType"
+                  [class.is-invalid]="hasError('customerType', 'required')">
+                  <option value="">Select Type</option>
+                  <option *ngFor="let type of customerTypes" [value]="type">{{type}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="getErrorMessage('customerType')">
+                  {{ getErrorMessage('customerType') }}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Annual Income *</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" formControlName="annualIncome"
+                    [class.is-invalid]="hasError('annualIncome', 'required') || hasError('annualIncome', 'min')">
+                </div>
+                <div class="invalid-feedback d-block" *ngIf="getErrorMessage('annualIncome')">
+                  {{ getErrorMessage('annualIncome') }}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Employment Status *</label>
+                <select class="form-select" formControlName="employmentStatus"
+                  [class.is-invalid]="hasError('employmentStatus', 'required')">
+                  <option value="">Select Status</option>
+                  <option *ngFor="let status of employmentStatuses" [value]="status">{{status}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="getErrorMessage('employmentStatus')">
+                  {{ getErrorMessage('employmentStatus') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex justify-content-end gap-2">
+                  <button type="button" class="btn btn-secondary" (click)="cancel()" [disabled]="loading">
+                    <i class="bi bi-x-circle me-2"></i>Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="loading">
+                    <i class="bi" [class.bi-check-circle]="!isEditMode" [class.bi-save]="isEditMode" class="me-2"></i>
+                    {{isEditMode ? 'Update Customer' : 'Create Customer'}}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,197 @@
+<section class="mf-page container py-4 fade-in">
+  <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">MF Investing Control Tower</h2>
+      <p class="text-muted mb-0">Track total NAV, investment mix, and customer transaction journeys.</p>
+    </div>
+    <span class="badge text-bg-light border px-3 py-2">BFSI Wealth Module</span>
+  </div>
+
+  <div class="row g-3 mb-4" *ngIf="summary as metrics">
+    <div class="col-12 col-md-6 col-xl-3">
+      <article class="metric-card card h-100">
+        <div class="card-body">
+          <p class="metric-label">Total Invested</p>
+          <h3 class="metric-value">Rs. {{ metrics.totalInvested | number:'1.0-0' }}</h3>
+        </div>
+      </article>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+      <article class="metric-card card h-100 nav-card">
+        <div class="card-body">
+          <p class="metric-label">Total NAV</p>
+          <h3 class="metric-value">Rs. {{ metrics.totalNav | number:'1.0-0' }}</h3>
+        </div>
+      </article>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+      <article class="metric-card card h-100">
+        <div class="card-body">
+          <p class="metric-label">Unrealized Gain</p>
+          <h3 class="metric-value">Rs. {{ metrics.unrealizedGain | number:'1.0-0' }}</h3>
+        </div>
+      </article>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+      <article class="metric-card card h-100">
+        <div class="card-body">
+          <p class="metric-label">Return %</p>
+          <h3 class="metric-value" [class.text-success]="metrics.returnPct >= 0" [class.text-danger]="metrics.returnPct < 0">
+            {{ metrics.returnPct | number:'1.2-2' }}%
+          </h3>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4" *ngIf="isBrowser && summary">
+    <div class="col-12 col-lg-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <highcharts-chart
+            [constructorType]="chartConstructor"
+            [options]="allocationChartOptions"
+            class="chart-host">
+          </highcharts-chart>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-7">
+      <div class="card h-100">
+        <div class="card-body">
+          <highcharts-chart
+            [constructorType]="chartConstructor"
+            [options]="navTrendChartOptions"
+            class="chart-host">
+          </highcharts-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-xl-5">
+      <div class="card h-100">
+        <div class="card-header">Transaction Request Panel</div>
+        <div class="card-body">
+          <form [formGroup]="transactionForm" (ngSubmit)="submitTransaction()" novalidate>
+            <div class="mb-3">
+              <label for="type" class="form-label">Transaction Type</label>
+              <select id="type" formControlName="type" class="form-select">
+                <option value="Lumpsum">Lumpsum</option>
+                <option value="SIP">SIP</option>
+                <option value="SWP">SWP</option>
+                <option value="Withdrawal">Withdrawal</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="scheme" class="form-label">Scheme</label>
+              <select id="scheme" formControlName="scheme" class="form-select">
+                <option *ngFor="let scheme of availableSchemes" [value]="scheme">{{ scheme }}</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount (Rs.)</label>
+              <input id="amount" type="number" class="form-control" formControlName="amount" min="500" />
+              <small class="text-danger" *ngIf="transactionForm.controls.amount.touched && transactionForm.controls.amount.invalid">
+                Please enter an amount of at least Rs. 500.
+              </small>
+            </div>
+
+            <div class="mb-3" *ngIf="showFrequency">
+              <label for="frequency" class="form-label">Frequency</label>
+              <select id="frequency" formControlName="frequency" class="form-select">
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label for="executionDate" class="form-label">Execution Date</label>
+              <input id="executionDate" type="date" class="form-control" formControlName="executionDate" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Create Transaction</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-7">
+      <div class="card h-100">
+        <div class="card-header">How User Transaction Flows in System</div>
+        <div class="card-body">
+          <div class="flow-root">MF Investing</div>
+          <div class="flow-grid">
+            <article class="flow-node">
+              <h6>Lumpsum</h6>
+              <p>One-time buy order -> allocation engine -> NAV update -> confirmation.</p>
+            </article>
+            <article class="flow-node">
+              <h6>SIP</h6>
+              <p>Mandate setup -> periodic debit scheduler -> unit purchase -> portfolio rebalance.</p>
+            </article>
+            <article class="flow-node">
+              <h6>SWP</h6>
+              <p>Redemption schedule -> unit liquidation -> payout transfer -> tax event capture.</p>
+            </article>
+            <article class="flow-node">
+              <h6>Withdrawal</h6>
+              <p>Ad-hoc redemption request -> compliance check -> payout release -> NAV adjust.</p>
+            </article>
+          </div>
+
+          <hr />
+
+          <div class="design-stack">
+            <article class="design-layer" *ngFor="let layer of designLayers">
+              <h6 class="mb-2">{{ layer.title }}</h6>
+              <ul class="mb-0">
+                <li *ngFor="let item of layer.items">{{ item }}</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Recent MF Transactions</div>
+    <div class="card-body table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Txn ID</th>
+            <th>Type</th>
+            <th>Scheme</th>
+            <th>Amount</th>
+            <th>Frequency</th>
+            <th>Execution Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tx of transactions; trackBy: trackByTransactionId">
+            <td>#{{ tx.id }}</td>
+            <td>{{ tx.type }}</td>
+            <td>{{ tx.scheme }}</td>
+            <td>Rs. {{ tx.amount | number:'1.0-0' }}</td>
+            <td>{{ tx.frequency || '-' }}</td>
+            <td>{{ tx.executionDate }}</td>
+            <td>
+              <span class="badge" [class.text-bg-success]="tx.status === 'Completed'" [class.text-bg-info]="tx.status === 'Scheduled'">
+                {{ tx.status }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="transactions.length === 0">
+            <td colspan="7" class="text-center text-muted py-4">No transactions available.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

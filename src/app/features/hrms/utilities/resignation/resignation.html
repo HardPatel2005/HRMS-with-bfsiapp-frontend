@@ -1,0 +1,34 @@
+<section class="hrms-page">
+  <div class="hrms-panel hrms-panel--framed">
+    <h1 class="hrms-title">Employee Resignation</h1>
+
+    <p class="hrms-note">Note: 2 months notice period is to be served by all the employees working in Optimum Financial Solutions Pvt. Ltd.</p>
+
+    <div class="hrms-form-shell hrms-stack mt-4">
+      <div class="hrms-grid hrms-grid--2">
+        <div>
+          <label class="hrms-field-label" for="resignationDate">Date of Resignation</label>
+          <input id="resignationDate" class="hrms-input" type="date" (input)="onResignationDateChange($event)">
+        </div>
+        <div>
+          <label class="hrms-field-label" for="lastWorkingDate">Last Working Date</label>
+          <input id="lastWorkingDate" class="hrms-input" type="date" [value]="lastWorkingDate()" readonly>
+        </div>
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="resignationReason">Reason for Resignation</label>
+        <textarea id="resignationReason" class="hrms-textarea"></textarea>
+      </div>
+
+      <div class="resignation-signature">
+        <span>Regards,</span>
+        <strong>Krupa Kadia</strong>
+      </div>
+
+      <div class="text-center pt-2">
+        <button class="hrms-btn" type="button">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>

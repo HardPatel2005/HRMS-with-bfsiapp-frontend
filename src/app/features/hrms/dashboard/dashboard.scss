@@ -1,0 +1,114 @@
+.dashboard-page {
+  padding-top: 1.25rem;
+}
+
+.dashboard-panel {
+  background: #f7f8fa;
+}
+
+.dashboard-events {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.event-card {
+  position: relative;
+  min-height: 190px;
+  overflow: hidden;
+  border: 1px solid #dbe4f3;
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.theme-blue::before {
+  background: linear-gradient(135deg, #0d4ea6 0%, #4d97ff 40%, #0a2b55 100%);
+}
+
+.theme-amber::before {
+  background: radial-gradient(circle at center, #ffd986 0%, #934c0e 35%, #1f1711 100%);
+}
+
+.theme-festival::before {
+  background: linear-gradient(135deg, #63d8ff 0%, #7d7cff 28%, #ff84a7 58%, #ffd275 100%);
+}
+
+.theme-sand::before {
+  background: linear-gradient(135deg, #fff0a5 0%, #f7d87a 60%, #8ac8ff 100%);
+}
+
+.event-card__overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.8rem 1rem;
+  background: rgb(0 0 0 / 0.45);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+.dashboard-card__heading {
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.employee-badge {
+  display: grid;
+  place-items: center;
+  min-height: 275px;
+  margin: 0 auto;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  width: min(250px, 100%);
+  background: radial-gradient(circle at center, #fdf4d6 0%, #f9e0aa 40%, #ebb24b 75%, #d78d12 100%);
+  color: #9c5800;
+  text-align: center;
+  box-shadow: inset 0 0 0 10px #f5c24e, inset 0 0 0 20px rgb(255 255 255 / 0.7);
+}
+
+.employee-badge__seal {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.employee-badge__title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.employee-badge__subtitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hrms-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 0.55rem 0.9rem;
+  background: #4c95ff;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 991.98px) {
+  .dashboard-events {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dashboard-events {
+    grid-template-columns: 1fr;
+  }
+}

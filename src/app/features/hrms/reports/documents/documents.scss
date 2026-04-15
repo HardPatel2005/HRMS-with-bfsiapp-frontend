@@ -1,0 +1,16 @@
+.documents-filter {
+  display: grid;
+  grid-template-columns: minmax(0, 240px) minmax(0, 240px) auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.documents-filter__button {
+  min-width: 120px;
+}
+
+@media (max-width: 767.98px) {
+  .documents-filter {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,13 @@
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  
+  a {
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #fff !important;
+    }
+  }
+}

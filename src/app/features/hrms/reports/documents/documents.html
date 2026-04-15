@@ -1,0 +1,35 @@
+<section class="hrms-page">
+  <div class="hrms-panel hrms-panel--framed">
+    <h1 class="hrms-title">Documents</h1>
+
+    <div class="documents-filter">
+      <div>
+        <label class="visually-hidden" for="documentFromDate">From Date</label>
+        <input id="documentFromDate" class="hrms-input" type="date">
+      </div>
+      <div>
+        <label class="visually-hidden" for="documentToDate">To Date</label>
+        <input id="documentToDate" class="hrms-input" type="date">
+      </div>
+      <div>
+        <button class="hrms-btn documents-filter__button" type="button">Show</button>
+      </div>
+    </div>
+
+    <table class="hrms-table mt-4">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Document Type</th>
+          <th>File Name</th>
+          <th>Operation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hrms-empty" colspan="4">No documents found for the selected date range.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

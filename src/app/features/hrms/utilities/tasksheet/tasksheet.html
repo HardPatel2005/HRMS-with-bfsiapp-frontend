@@ -1,0 +1,42 @@
+<section class="hrms-page">
+  <div class="hrms-panel hrms-panel--framed">
+    <h1 class="hrms-title">Add Daily Tasksheet</h1>
+
+    <div class="hrms-form-shell hrms-stack">
+      <div class="hrms-grid hrms-grid--2">
+        <div>
+          <label class="hrms-field-label" for="taskDate">Date</label>
+          <input id="taskDate" class="hrms-input" type="date">
+        </div>
+        <div>
+          <label class="hrms-field-label" for="projectName">Project</label>
+          <input id="projectName" class="hrms-input" type="text" placeholder="Enter project name">
+        </div>
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="workSummary">Work Summary</label>
+        <textarea id="workSummary" class="hrms-textarea"></textarea>
+      </div>
+
+      <div class="hrms-grid hrms-grid--2">
+        <div>
+          <label class="hrms-field-label" for="hoursSpent">Hours Spent</label>
+          <input id="hoursSpent" class="hrms-input" type="number" min="0" step="0.5" placeholder="8">
+        </div>
+        <div>
+          <label class="hrms-field-label" for="taskStatus">Status</label>
+          <select id="taskStatus" class="hrms-select">
+            <option>Completed</option>
+            <option>In Progress</option>
+            <option>Blocked</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center pt-2">
+        <button class="hrms-btn" type="button">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>

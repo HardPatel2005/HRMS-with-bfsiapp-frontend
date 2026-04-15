@@ -1,0 +1,28 @@
+.profile-avatar {
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #6db0ff 0%, #2667d1 100%);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.profile-fields {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.profile-field {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #e8edf5;
+}
+
+.profile-field span {
+  color: #6d7788;
+}

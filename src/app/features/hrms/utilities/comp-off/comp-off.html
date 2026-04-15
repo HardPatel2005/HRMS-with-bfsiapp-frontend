@@ -1,0 +1,60 @@
+<section class="hrms-page">
+  <div class="hrms-panel hrms-panel--framed">
+    <h1 class="hrms-title">Apply/Approved Comp-Off</h1>
+
+    <div class="hrms-form-shell hrms-stack">
+      <div>
+        <label class="hrms-field-label" for="earnedDate">Comp-off earned Date</label>
+        <input id="earnedDate" class="hrms-input" type="date">
+      </div>
+
+      <div class="hrms-grid hrms-grid--2">
+        <div>
+          <label class="hrms-field-label" for="inTime">In Time</label>
+          <input id="inTime" class="hrms-input" type="time">
+        </div>
+        <div>
+          <label class="hrms-field-label" for="outTime">Out Time</label>
+          <input id="outTime" class="hrms-input" type="time">
+        </div>
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="usedWith">Select Comp-Off Used With</label>
+        <select id="usedWith" class="hrms-select">
+          <option>Planned Leave</option>
+          <option>Optional Leave</option>
+          <option>Emergency Leave</option>
+        </select>
+      </div>
+
+      <div class="hrms-grid hrms-grid--2">
+        <div>
+          <label class="hrms-field-label" for="clientName">Select Client Name</label>
+          <select id="clientName" class="hrms-select">
+            <option>Acme Retail</option>
+            <option>Vertex Finance</option>
+            <option>Optimum Internal</option>
+          </select>
+        </div>
+        <div>
+          <label class="hrms-field-label" for="category">Select Category</label>
+          <select id="category" class="hrms-select">
+            <option>Weekend Support</option>
+            <option>Production Deployment</option>
+            <option>Client Escalation</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="compDescription">Description of Comp Off</label>
+        <textarea id="compDescription" class="hrms-textarea"></textarea>
+      </div>
+
+      <div class="text-center pt-2">
+        <button class="hrms-btn" type="button">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>

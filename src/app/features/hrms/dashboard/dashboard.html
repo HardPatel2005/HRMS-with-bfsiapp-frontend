@@ -1,0 +1,60 @@
+<section class="hrms-page dashboard-page">
+  <div class="hrms-panel hrms-panel--framed dashboard-panel">
+    <div class="dashboard-events">
+      @for (event of events; track event.title) {
+        <article class="event-card" [class]="'event-card ' + event.theme">
+          <div class="event-card__overlay">
+            <span>{{ event.title }}</span>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="text-center my-4">
+      <button class="hrms-btn" type="button">View More</button>
+    </div>
+
+    <div class="hrms-grid hrms-grid--2 align-items-stretch">
+      <section class="hrms-card dashboard-card">
+        <h2 class="dashboard-card__heading">Employee Of The Month</h2>
+        <div class="employee-badge">
+          <div class="employee-badge__seal">Employee</div>
+          <div class="employee-badge__title">Coming Soon</div>
+          <div class="employee-badge__subtitle">Of The Month</div>
+        </div>
+      </section>
+
+      <section class="hrms-card dashboard-card">
+        <div class="d-flex justify-content-between align-items-start gap-3 mb-3 flex-wrap">
+          <h2 class="dashboard-card__heading mb-0">Vacancy</h2>
+          <a routerLink="/utilities/refer-candidate" class="btn btn-link p-0 text-decoration-none">Refer candidates</a>
+        </div>
+
+        <table class="hrms-table">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Location</th>
+              <th>Experience</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (vacancy of vacancies; track vacancy.position) {
+              <tr>
+                <td>{{ vacancy.position }}</td>
+                <td>{{ vacancy.location }}</td>
+                <td>{{ vacancy.experience }}</td>
+                <td><a routerLink="/utilities/refer-candidate" class="hrms-link-btn">Refer Now</a></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <div class="mt-4">
+          <a routerLink="/reports" class="hrms-btn text-decoration-none d-inline-flex align-items-center">View More</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

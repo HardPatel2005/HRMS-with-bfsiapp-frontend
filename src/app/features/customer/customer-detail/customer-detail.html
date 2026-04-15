@@ -1,0 +1,83 @@
+<app-loading-spinner [isLoading]="loading" [message]="'Loading customer details...'"></app-loading-spinner>
+
+<div class="container py-4 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3 class="mb-0">
+            <i class="bi bi-person-lines-fill me-2"></i>
+            Customer Details
+          </h3>
+          <button class="btn btn-outline-secondary btn-sm" (click)="goBack()">
+            <i class="bi bi-arrow-left me-1"></i>
+            Back
+          </button>
+        </div>
+
+        <div class="card-body">
+          <div *ngIf="errorMessage" class="alert alert-danger mb-0">
+						{{ errorMessage }}
+					</div>
+
+					<div *ngIf="!loading && customer">
+						<div class="row mb-4">
+							<div class="col-md-8">
+								<h4 class="mb-1">{{ customer.firstName }} {{ customer.middleName }} {{ customer.lastName }}</h4>
+								<p class="text-muted mb-0">Customer ID: #{{ customer.id }}</p>
+							</div>
+							<div class="col-md-4 text-md-end mt-3 mt-md-0">
+								<span class="badge me-2" [class.bg-success]="customer.isActive" [class.bg-danger]="!customer.isActive">
+									{{ customer.isActive ? 'Active' : 'Inactive' }}
+								</span>
+								<span class="badge" [class.bg-success]="customer.isKYCVerified" [class.bg-warning]="!customer.isKYCVerified">
+									{{ customer.isKYCVerified ? 'KYC Verified' : 'KYC Pending' }}
+								</span>
+							</div>
+						</div>
+
+						<div class="row g-3">
+							<div class="col-md-6">
+								<div class="detail-item"><strong>Email:</strong> {{ customer.email }}</div>
+								<div class="detail-item"><strong>Phone:</strong> {{ customer.phoneNumber }}</div>
+								<div class="detail-item"><strong>Alternate Phone:</strong> {{ customer.alternatePhoneNumber || 'N/A' }}</div>
+								<div class="detail-item"><strong>Date of Birth:</strong> {{ formatDate(customer.dateOfBirth) }}</div>
+								<div class="detail-item"><strong>Gender:</strong> {{ customer.gender }}</div>
+							</div>
+							<div class="col-md-6">
+								<div class="detail-item"><strong>Address:</strong> {{ customer.addressLine1 }}, {{ customer.addressLine2 || '' }}</div>
+								<div class="detail-item"><strong>Location:</strong> {{ customer.city }}, {{ customer.state }}, {{ customer.postalCode }}, {{ customer.country }}</div>
+								<div class="detail-item"><strong>ID Type:</strong> {{ customer.identificationType }}</div>
+								<div class="detail-item"><strong>ID Number:</strong> {{ customer.identificationNumber }}</div>
+								<div class="detail-item"><strong>Customer Type:</strong> {{ customer.customerType }}</div>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="row g-3 mb-4">
+							<div class="col-md-6">
+								<div class="detail-item"><strong>Annual Income:</strong> {{ customer.annualIncome | currency }}</div>
+								<div class="detail-item"><strong>Employment Status:</strong> {{ customer.employmentStatus }}</div>
+							</div>
+							<div class="col-md-6">
+								<div class="detail-item"><strong>KYC Verified Date:</strong> {{ formatDate(customer.kycVerifiedDate) }}</div>
+							</div>
+						</div>
+
+						<div class="d-flex justify-content-end gap-2">
+							<button class="btn btn-success" (click)="editCustomer()">
+								<i class="bi bi-pencil me-1"></i>
+								Edit
+							</button>
+							<button class="btn btn-danger" (click)="deleteCustomer()">
+								<i class="bi bi-trash me-1"></i>
+								Delete
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.intelliSenseEngine": "Disabled",
+  "C_Cpp.files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules/**": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true
+  }
+}

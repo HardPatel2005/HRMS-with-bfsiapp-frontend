@@ -1,0 +1,260 @@
+// FIX: @import is deprecated in Dart Sass and removed in 3.0.0
+// Use @use instead — functionally identical for Bootstrap
+
+@use 'bootstrap/scss/bootstrap';
+
+// Your custom styles below
+
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #0dcaf0;
+  --hrms-accent: #4c95ff;
+  --hrms-accent-dark: #2767d8;
+  --hrms-surface: #ffffff;
+  --hrms-border: #e8edf5;
+  --hrms-text: #23262d;
+  --hrms-muted: #6d7788;
+  --hrms-page: #f5f7fb;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: var(--hrms-text);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border: none;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.btn {
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.form-control, .form-select {
+  border-radius: 0.375rem;
+}
+
+.table {
+  background-color: white;
+}
+
+.badge {
+  padding: 0.5em 0.75em;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+  -webkit-animation: fadeIn 0.5s ease-in;
+}
+
+/* Loading spinner */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.hrms-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.hrms-panel {
+  background: var(--hrms-surface);
+  border: 1px solid var(--hrms-border);
+  box-shadow: 0 3px 12px rgb(30 41 59 / 0.05);
+}
+
+.hrms-panel--framed {
+  padding: 1.25rem;
+  border-radius: 0;
+}
+
+.hrms-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.hrms-subtitle {
+  margin-bottom: 1rem;
+  color: var(--hrms-muted);
+}
+
+.hrms-section-heading {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hrms-grid {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.hrms-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hrms-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hrms-card {
+  height: 100%;
+  padding: 1.35rem;
+  border: 1px solid var(--hrms-border);
+  background: #fff;
+  box-shadow: 0 4px 10px rgb(30 41 59 / 0.04);
+}
+
+.hrms-card__title {
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.hrms-card__text {
+  margin-bottom: 0;
+  color: var(--hrms-muted);
+}
+
+.hrms-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #63a7ff 0%, #2f75e2 100%);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.hrms-btn {
+  padding: 0.7rem 1.5rem;
+  border: 0;
+  background: var(--hrms-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.hrms-btn:hover {
+  background: var(--hrms-accent-dark);
+}
+
+.hrms-note {
+  padding: 1rem 1.15rem;
+  border: 1px solid #f1e7ea;
+  background: #faf6f7;
+  color: #434a57;
+  font-weight: 600;
+}
+
+.hrms-form-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 1px solid var(--hrms-border);
+  background: #fff;
+}
+
+.hrms-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.hrms-table th,
+.hrms-table td {
+  padding: 0.95rem 0.85rem;
+  border-bottom: 1px solid var(--hrms-border);
+  text-align: left;
+}
+
+.hrms-table th {
+  background: #f4f5f7;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.hrms-empty {
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--hrms-muted);
+}
+
+.hrms-input,
+.hrms-select,
+.hrms-textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #dde4ef;
+  background: #fff;
+}
+
+.hrms-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.hrms-field-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #4a5260;
+}
+
+.hrms-stack > * + * {
+  margin-top: 1rem;
+}
+
+@media (max-width: 991.98px) {
+  .hrms-grid--2,
+  .hrms-grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .hrms-page {
+    padding: 1rem;
+  }
+
+  .hrms-form-shell {
+    padding: 1rem;
+  }
+}

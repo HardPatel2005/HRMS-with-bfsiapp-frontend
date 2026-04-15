@@ -1,0 +1,14 @@
+<section class="hrms-page">
+  <div class="hrms-panel hrms-panel--framed">
+    <h1 class="hrms-title">Reports</h1>
+
+    <div class="hrms-grid hrms-grid--3 reports-grid">
+      @for (item of items; track item.title) {
+        <a class="report-tile" [routerLink]="item.route">
+          <span class="report-tile__icon">{{ item.icon }}</span>
+          <span class="report-tile__label">{{ item.title }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>

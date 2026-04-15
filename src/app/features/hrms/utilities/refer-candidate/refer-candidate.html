@@ -1,0 +1,26 @@
+<section class="hrms-page">
+  <div class="hrms-panel hrms-panel--framed narrow-panel">
+    <h1 class="hrms-title">Refer A Candidate</h1>
+
+    <table class="hrms-table">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Location</th>
+          <th>Experience</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (opening of openings; track opening.position) {
+          <tr>
+            <td>{{ opening.position }}</td>
+            <td>{{ opening.location }}</td>
+            <td>{{ opening.experience }}</td>
+            <td><a routerLink="/utilities/refer-candidate" class="hrms-link-btn">Refer Now</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

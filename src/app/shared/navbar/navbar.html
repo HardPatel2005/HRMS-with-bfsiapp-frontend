@@ -1,0 +1,81 @@
+@if (isLoggedIn$ | async) {
+  <nav class="navbar navbar-expand-lg hrms-navbar">
+    <div class="container-fluid hrms-navbar__inner">
+      <a class="hrms-brand" routerLink="/dashboard" aria-label="Optimum HRMS dashboard">
+        <span class="hrms-brand__mark" aria-hidden="true">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </span>
+        <span class="hrms-brand__text">
+          <strong>OPTIMUM</strong>
+          <small>FINANCIAL SOLUTIONS</small>
+        </span>
+      </a>
+
+      <button
+        class="navbar-toggler hrms-navbar__toggler"
+        type="button"
+        (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" [class.show]="!isCollapsed">
+        <ul class="navbar-nav mx-auto hrms-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/utilities" routerLinkActive="active">Utilities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/reports" routerLinkActive="active">Report</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/profile" routerLinkActive="active">My Profile</a>
+          </li>
+        </ul>
+
+        <button class="logout-link" type="button" (click)="logout()" routerLink="/login" aria-label="Logout">
+          <span aria-hidden="true">⇢</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+} @else {
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">
+        BFSI Banking System
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [class.show]="!isCollapsed">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+}
