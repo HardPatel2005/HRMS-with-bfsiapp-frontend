@@ -1,4 +1,6 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Submitting grievance..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed">
     <h1 class="hrms-title">Add Grievance</h1>
 
@@ -7,26 +9,26 @@
       All supporting documents must be attached to this grievance form at the time the grievance is filed.
     </p>
 
-    <div class="hrms-form-shell hrms-stack mt-4">
+    <form class="hrms-form-shell hrms-stack mt-4" [formGroup]="form" (ngSubmit)="submit()" novalidate>
       <div class="hrms-grid hrms-grid--2">
         <div>
           <label class="hrms-field-label" for="incidentDate">Date of Incident</label>
-          <input id="incidentDate" class="hrms-input" type="date">
+          <input id="incidentDate" class="hrms-input" type="date" formControlName="incidentDate">
         </div>
         <div>
           <label class="hrms-field-label" for="incidentTime">Time of Incident</label>
-          <input id="incidentTime" class="hrms-input" type="time">
+          <input id="incidentTime" class="hrms-input" type="time" formControlName="incidentTime">
         </div>
       </div>
 
       <div class="hrms-grid hrms-grid--2">
         <div>
           <label class="hrms-field-label" for="incidentLocation">Location of Incident</label>
-          <input id="incidentLocation" class="hrms-input" type="text">
+          <input id="incidentLocation" class="hrms-input" type="text" formControlName="location">
         </div>
         <div>
           <label class="hrms-field-label" for="complaintAgainst">Select Complaint Against</label>
-          <select id="complaintAgainst" class="hrms-select">
+          <select id="complaintAgainst" class="hrms-select" formControlName="complaintAgainst">
             <option>Manager</option>
             <option>Colleague</option>
             <option>Process</option>
@@ -36,17 +38,17 @@
 
       <div>
         <label class="hrms-field-label" for="incidentDetails">Please describe the incident in details</label>
-        <textarea id="incidentDetails" class="hrms-textarea"></textarea>
+        <textarea id="incidentDetails" class="hrms-textarea" formControlName="description"></textarea>
       </div>
 
       <div>
         <label class="hrms-field-label" for="witnessDetails">If there are others who witnessed the incident, please provide details below</label>
-        <textarea id="witnessDetails" class="hrms-textarea"></textarea>
+        <textarea id="witnessDetails" class="hrms-textarea" formControlName="witnesses"></textarea>
       </div>
 
       <div class="text-center pt-2">
-        <button class="hrms-btn" type="button">Submit</button>
+        <button class="hrms-btn" type="submit">Submit</button>
       </div>
-    </div>
+    </form>
   </div>
 </section>

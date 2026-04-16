@@ -1,5 +1,11 @@
 <section class="hrms-page dashboard-page">
+  <app-loading-spinner [isLoading]="loading" message="Loading dashboard..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed dashboard-panel">
+    @if (errorMessage) {
+      <p class="dashboard-warning">{{ errorMessage }}</p>
+    }
+
     <div class="dashboard-events">
       @for (event of events; track event.title) {
         <article class="event-card" [class]="'event-card ' + event.theme">
@@ -19,7 +25,7 @@
         <h2 class="dashboard-card__heading">Employee Of The Month</h2>
         <div class="employee-badge">
           <div class="employee-badge__seal">Employee</div>
-          <div class="employee-badge__title">Coming Soon</div>
+          <div class="employee-badge__title">{{ employeeOfMonthName }}</div>
           <div class="employee-badge__subtitle">Of The Month</div>
         </div>
       </section>
@@ -40,12 +46,18 @@
             </tr>
           </thead>
           <tbody>
-            @for (vacancy of vacancies; track vacancy.position) {
+            @if (vacancies.length > 0) {
+              @for (vacancy of vacancies; track vacancy.id) {
+                <tr>
+                  <td>{{ vacancy.position }}</td>
+                  <td>{{ vacancy.location }}</td>
+                  <td>{{ vacancy.experience }}</td>
+                  <td><a routerLink="/utilities/refer-candidate" class="hrms-link-btn">Refer Now</a></td>
+                </tr>
+              }
+            } @else {
               <tr>
-                <td>{{ vacancy.position }}</td>
-                <td>{{ vacancy.location }}</td>
-                <td>{{ vacancy.experience }}</td>
-                <td><a routerLink="/utilities/refer-candidate" class="hrms-link-btn">Refer Now</a></td>
+                <td class="hrms-empty" colspan="4">No open vacancies available.</td>
               </tr>
             }
           </tbody>
@@ -54,6 +66,40 @@
         <div class="mt-4">
           <a routerLink="/reports" class="hrms-btn text-decoration-none d-inline-flex align-items-center">View More</a>
         </div>
+      </section>
+    </div>
+
+    <div class="hrms-grid hrms-grid--3 mt-4">
+      <section class="hrms-card dashboard-mini-card">
+        <h3>New Joinees</h3>
+        @if (newJoinees.length > 0) {
+          <ul>
+            @for (name of newJoinees; track name) {
+              <li>{{ name }}</li>
+            }
+          </ul>
+        } @else {
+          <p class="hrms-card__text mb-0">No recent joinees.</p>
+        }
+      </section>
+
+      <section class="hrms-card dashboard-mini-card">
+        <h3>Employees On Leave</h3>
+        <p class="dashboard-mini-count">{{ employeesOnLeaveCount }}</p>
+        <a routerLink="/reports/employees-on-leave" class="btn btn-link p-0 text-decoration-none">View leave report</a>
+      </section>
+
+      <section class="hrms-card dashboard-mini-card">
+        <h3>Birthdays</h3>
+        @if (birthdays.length > 0) {
+          <ul>
+            @for (name of birthdays; track name) {
+              <li>{{ name }}</li>
+            }
+          </ul>
+        } @else {
+          <p class="hrms-card__text mb-0">No birthdays this month.</p>
+        }
       </section>
     </div>
   </div>

@@ -1,15 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-type EvaluationMetric = {
-  readonly title: string;
-  readonly value: string;
-  readonly note: string;
-};
+import { FormsModule } from '@angular/forms';
+import { HrmsService } from '../../../../core/services/hrms.service';
+import { PerformanceEvaluation } from '../../../../models/hrms.model';
+import { LoadingSpinner } from '../../../../shared/loading-spinner/loading-spinner';
 
 @Component({
   selector: 'app-performance-evaluation',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, LoadingSpinner],
   templateUrl: './performance-evaluation.html',
   styleUrl: './performance-evaluation.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,10 +15,33 @@ type EvaluationMetric = {
     class: 'd-block'
   }
 })
-export class PerformanceEvaluationComponent {
-  readonly metrics: readonly EvaluationMetric[] = [
-    { title: 'Delivery', value: '4.5 / 5', note: 'Strong sprint completion record.' },
-    { title: 'Collaboration', value: '4.2 / 5', note: 'Positive cross-team feedback.' },
-    { title: 'Ownership', value: '4.7 / 5', note: 'Handles critical incidents independently.' }
-  ];
+export class PerformanceEvaluationComponent implements OnInit {
+  private readonly hrmsService = inject(HrmsService);
+  private readonly cdr = inject(ChangeDetectorRef);
+
+  loading = false;
+  employeeName = '';
+  evaluations: PerformanceEvaluation[] = [];
+
+  ngOnInit(): void {
+    this.loadEvaluations();
+  }
+
+  loadEvaluations(): void {
+    this.loading = true;
+    this.cdr.markForCheck();
+
+    this.hrmsService.getPerformanceEvaluations(this.employeeName || undefined).subscribe({
+      next: data => {
+        this.evaluations = data;
+        this.loading = false;
+        this.cdr.markForCheck();
+      },
+      error: () => {
+        this.evaluations = [];
+        this.loading = false;
+        this.cdr.markForCheck();
+      }
+    });
+  }
 }

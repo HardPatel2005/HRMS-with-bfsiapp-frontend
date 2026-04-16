@@ -79,7 +79,7 @@ export class RegisterComponent {
             return;
           }
           this.toastr.success('Registration successful! Please verify your email.', 'Success');
-          this.router.navigate(['/customers']);
+          this.router.navigate(['/dashboard']);
           this.loading = false;
         },
         error: (error: HttpErrorResponse) => {

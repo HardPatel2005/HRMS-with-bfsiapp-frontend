@@ -1,18 +1,28 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Loading documents..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed">
     <h1 class="hrms-title">Documents</h1>
 
     <div class="documents-filter">
       <div>
         <label class="visually-hidden" for="documentFromDate">From Date</label>
-        <input id="documentFromDate" class="hrms-input" type="date">
+        <input id="documentFromDate" class="hrms-input" type="date" [(ngModel)]="fromDate">
       </div>
       <div>
         <label class="visually-hidden" for="documentToDate">To Date</label>
-        <input id="documentToDate" class="hrms-input" type="date">
+        <input id="documentToDate" class="hrms-input" type="date" [(ngModel)]="toDate">
       </div>
       <div>
-        <button class="hrms-btn documents-filter__button" type="button">Show</button>
+        <label class="visually-hidden" for="documentType">Document Type</label>
+        <select id="documentType" class="hrms-select" [(ngModel)]="documentType">
+          <option value="">All Types</option>
+          <option value="Payslip">Payslip</option>
+          <option value="Appointment Letter">Appointment Letter</option>
+        </select>
+      </div>
+      <div>
+        <button class="hrms-btn documents-filter__button" type="button" (click)="loadDocuments()">Show</button>
       </div>
     </div>
 
@@ -26,9 +36,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="hrms-empty" colspan="4">No documents found for the selected date range.</td>
-        </tr>
+        @if (documents.length > 0) {
+          @for (document of documents; track document.id) {
+            <tr>
+              <td>{{ document.id }}</td>
+              <td>{{ document.documentType }}</td>
+              <td>{{ document.fileName }}</td>
+              <td>
+                @if (document.fileUrl) {
+                  <a [href]="document.fileUrl" target="_blank" rel="noopener">View</a>
+                } @else {
+                  <span>-</span>
+                }
+              </td>
+            </tr>
+          }
+        } @else {
+          <tr>
+            <td class="hrms-empty" colspan="4">No documents found for the selected date range.</td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

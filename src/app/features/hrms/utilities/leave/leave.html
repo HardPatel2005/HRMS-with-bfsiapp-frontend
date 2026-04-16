@@ -1,59 +1,61 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Submitting leave request..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed">
     <h1 class="hrms-title">Apply For Leave</h1>
 
     <div class="hrms-grid hrms-grid--2">
-      <section class="hrms-form-shell hrms-stack">
+      <form class="hrms-form-shell hrms-stack" [formGroup]="plannedLeaveForm" (ngSubmit)="submitPlannedLeave()" novalidate>
         <div class="d-flex gap-3 flex-wrap align-items-center">
           <span class="hrms-field-label mb-0">Leave Type :</span>
-          <label><input type="radio" name="plannedLeave" checked> Planned Leave</label>
-          <label><input type="radio" name="plannedLeave"> Optional Leave</label>
+          <label><input type="radio" formControlName="leaveType" value="Planned Leave"> Planned Leave</label>
+          <label><input type="radio" formControlName="leaveType" value="Optional Leave"> Optional Leave</label>
         </div>
 
         <div class="hrms-grid hrms-grid--2">
           <div>
             <label class="hrms-field-label" for="plannedFromDate">From Date</label>
-            <input id="plannedFromDate" class="hrms-input" type="date">
+            <input id="plannedFromDate" class="hrms-input" type="date" formControlName="fromDate">
           </div>
           <div>
             <label class="hrms-field-label" for="plannedToDate">To Date</label>
-            <input id="plannedToDate" class="hrms-input" type="date">
+            <input id="plannedToDate" class="hrms-input" type="date" formControlName="toDate">
           </div>
         </div>
 
         <div>
           <label class="hrms-field-label" for="plannedDescription">Description for Leave</label>
-          <textarea id="plannedDescription" class="hrms-textarea"></textarea>
+          <textarea id="plannedDescription" class="hrms-textarea" formControlName="description"></textarea>
         </div>
 
         <div class="text-center pt-2">
-          <button class="hrms-btn" type="button">Submit</button>
+          <button class="hrms-btn" type="submit">Submit</button>
         </div>
-      </section>
+      </form>
 
-      <section class="hrms-form-shell hrms-stack">
+      <form class="hrms-form-shell hrms-stack" [formGroup]="emergencyLeaveForm" (ngSubmit)="submitEmergencyLeave()" novalidate>
         <h2 class="h5 mb-0">Emergency Leave</h2>
 
         <div class="hrms-grid hrms-grid--2">
           <div>
             <label class="hrms-field-label" for="emergencyFromDate">From Date</label>
-            <input id="emergencyFromDate" class="hrms-input" type="date">
+            <input id="emergencyFromDate" class="hrms-input" type="date" formControlName="fromDate">
           </div>
           <div>
             <label class="hrms-field-label" for="emergencyToDate">To Date</label>
-            <input id="emergencyToDate" class="hrms-input" type="date">
+            <input id="emergencyToDate" class="hrms-input" type="date" formControlName="toDate">
           </div>
         </div>
 
         <div>
           <label class="hrms-field-label" for="emergencyDescription">Description for Leave</label>
-          <textarea id="emergencyDescription" class="hrms-textarea"></textarea>
+          <textarea id="emergencyDescription" class="hrms-textarea" formControlName="description"></textarea>
         </div>
 
         <div class="text-center pt-2">
-          <button class="hrms-btn" type="button">Submit</button>
+          <button class="hrms-btn" type="submit">Submit</button>
         </div>
-      </section>
+      </form>
     </div>
   </div>
 </section>

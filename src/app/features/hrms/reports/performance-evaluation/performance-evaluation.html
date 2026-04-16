@@ -1,21 +1,38 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Loading evaluations..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed">
     <h1 class="hrms-title">Performance Evaluation</h1>
     <p class="hrms-subtitle">View past evaluations and submit your self-evaluation for the current review period.</p>
 
-    <div class="hrms-grid hrms-grid--3">
-      @for (metric of metrics; track metric.title) {
-        <article class="hrms-card">
-          <div class="hrms-kicker">{{ metric.title.charAt(0) }}</div>
-          <h2 class="hrms-card__title">{{ metric.title }}</h2>
-          <p class="metric-value">{{ metric.value }}</p>
-          <p class="hrms-card__text">{{ metric.note }}</p>
-        </article>
-      }
+    <div class="hrms-grid hrms-grid--3 mb-4 align-items-end">
+      <div>
+        <label class="hrms-field-label" for="evaluationEmployeeName">Employee Name</label>
+        <input id="evaluationEmployeeName" class="hrms-input" type="text" [(ngModel)]="employeeName" placeholder="Filter by employee name">
+      </div>
+      <div>
+        <button class="hrms-btn" type="button" (click)="loadEvaluations()">Apply Filter</button>
+      </div>
     </div>
 
-    <div class="text-center mt-4">
-      <button class="hrms-btn" type="button">Submit Self Evaluation</button>
+    <div class="hrms-grid hrms-grid--3">
+      @if (evaluations.length > 0) {
+        @for (evaluation of evaluations; track evaluation.id) {
+          <article class="hrms-card">
+            <div class="hrms-kicker">{{ evaluation.employeeName.charAt(0) }}</div>
+            <h2 class="hrms-card__title">{{ evaluation.employeeName }}</h2>
+            <p class="metric-value">{{ evaluation.rating }} / 5</p>
+            <p class="hrms-card__text">Period: {{ evaluation.month }}/{{ evaluation.year }}</p>
+            <p class="hrms-card__text">Self: {{ evaluation.selfComments || '-' }}</p>
+            <p class="hrms-card__text">Reviewer: {{ evaluation.reviewerComments || '-' }}</p>
+          </article>
+        }
+      } @else {
+        <article class="hrms-card">
+          <h2 class="hrms-card__title">No evaluation records found.</h2>
+          <p class="hrms-card__text">Submit a self evaluation from your HR process to see history here.</p>
+        </article>
+      }
     </div>
   </div>
 </section>

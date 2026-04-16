@@ -31,6 +31,7 @@ export interface UserDto {
   id:               string;
   fullName:         string;
   email:            string;
+  role:             string;
   isEmailVerified:  boolean;
   isActive:         boolean;
   oAuthProvider?:   string | null;
@@ -53,6 +54,7 @@ export interface DeviceDto {
 export interface LoginRequest {
   email:       string;
   password:    string;
+  role:        string;
   deviceInfo?: DeviceInfo | null;
 }
 

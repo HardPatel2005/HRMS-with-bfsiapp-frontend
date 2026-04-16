@@ -1,22 +1,28 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Loading profile..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed">
     <h1 class="hrms-title">My Profile</h1>
     <p class="hrms-subtitle">Profile details are available here for quick review and HR record validation.</p>
 
     <div class="hrms-grid hrms-grid--2">
       <section class="hrms-card">
-        <div class="profile-avatar">KK</div>
-        <h2 class="hrms-card__title mt-3">Krupa Kadia</h2>
-        <p class="hrms-card__text">Software Engineer at Optimum Financial Solutions</p>
+        <div class="profile-avatar">{{ initials }}</div>
+        <h2 class="hrms-card__title mt-3">{{ profileName }}</h2>
+        <p class="hrms-card__text">{{ profileRole }}</p>
       </section>
 
       <section class="hrms-card">
         <div class="profile-fields">
-          @for (field of profileFields; track field.label) {
-            <div class="profile-field">
-              <span>{{ field.label }}</span>
-              <strong>{{ field.value }}</strong>
-            </div>
+          @if (profileFields.length > 0) {
+            @for (field of profileFields; track field.label) {
+              <div class="profile-field">
+                <span>{{ field.label }}</span>
+                <strong>{{ field.value }}</strong>
+              </div>
+            }
+          } @else {
+            <p class="hrms-card__text mb-0">No profile data available.</p>
           }
         </div>
       </section>

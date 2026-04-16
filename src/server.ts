@@ -8,11 +8,6 @@ import express              from 'express';
 import { fileURLToPath }    from 'node:url';
 import { dirname, resolve } from 'node:path';
 
-// ── Dev-only: accept self-signed .NET cert during SSR HTTP calls ──────────
-if (process.env['NODE_ENV'] !== 'production') {
-  process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-}
-
 const serverDistFolder  = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 

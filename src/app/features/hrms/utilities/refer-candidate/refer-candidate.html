@@ -1,4 +1,6 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Working on referral..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed narrow-panel">
     <h1 class="hrms-title">Refer A Candidate</h1>
 
@@ -12,15 +14,51 @@
         </tr>
       </thead>
       <tbody>
-        @for (opening of openings; track opening.position) {
+        @if (openings.length > 0) {
+          @for (opening of openings; track opening.id) {
+            <tr>
+              <td>{{ opening.position }}</td>
+              <td>{{ opening.location }}</td>
+              <td>{{ opening.experience }}</td>
+              <td>
+                <button class="hrms-link-btn" type="button" (click)="selectPosition(opening.position)">Refer Now</button>
+              </td>
+            </tr>
+          }
+        } @else {
           <tr>
-            <td>{{ opening.position }}</td>
-            <td>{{ opening.location }}</td>
-            <td>{{ opening.experience }}</td>
-            <td><a routerLink="/utilities/refer-candidate" class="hrms-link-btn">Refer Now</a></td>
+            <td class="hrms-empty" colspan="4">No openings available.</td>
           </tr>
         }
       </tbody>
     </table>
+
+    <form class="hrms-form-shell hrms-stack mt-4" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <h2 class="h4 mb-2">Candidate Referral Form</h2>
+
+      <div>
+        <label class="hrms-field-label" for="referralPosition">Position</label>
+        <input id="referralPosition" class="hrms-input" type="text" formControlName="position" [readonly]="!!selectedPosition">
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="candidateName">Candidate Name</label>
+        <input id="candidateName" class="hrms-input" type="text" formControlName="candidateName">
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="candidateContact">Contact</label>
+        <input id="candidateContact" class="hrms-input" type="text" formControlName="contact" placeholder="Phone or email">
+      </div>
+
+      <div>
+        <label class="hrms-field-label" for="cvFileName">Upload CV (file name)</label>
+        <input id="cvFileName" class="hrms-input" type="text" formControlName="cvFileName" placeholder="candidate-cv.pdf">
+      </div>
+
+      <div class="text-center">
+        <button class="hrms-btn" type="submit">Submit</button>
+      </div>
+    </form>
   </div>
 </section>

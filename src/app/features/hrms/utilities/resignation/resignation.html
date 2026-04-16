@@ -1,14 +1,16 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Submitting resignation..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed">
     <h1 class="hrms-title">Employee Resignation</h1>
 
     <p class="hrms-note">Note: 2 months notice period is to be served by all the employees working in Optimum Financial Solutions Pvt. Ltd.</p>
 
-    <div class="hrms-form-shell hrms-stack mt-4">
+    <form class="hrms-form-shell hrms-stack mt-4" [formGroup]="form" (ngSubmit)="submit()" novalidate>
       <div class="hrms-grid hrms-grid--2">
         <div>
           <label class="hrms-field-label" for="resignationDate">Date of Resignation</label>
-          <input id="resignationDate" class="hrms-input" type="date" (input)="onResignationDateChange($event)">
+          <input id="resignationDate" class="hrms-input" type="date" formControlName="resignationDate" (input)="onResignationDateChange($event)">
         </div>
         <div>
           <label class="hrms-field-label" for="lastWorkingDate">Last Working Date</label>
@@ -18,7 +20,7 @@
 
       <div>
         <label class="hrms-field-label" for="resignationReason">Reason for Resignation</label>
-        <textarea id="resignationReason" class="hrms-textarea"></textarea>
+        <textarea id="resignationReason" class="hrms-textarea" formControlName="reason"></textarea>
       </div>
 
       <div class="resignation-signature">
@@ -27,8 +29,8 @@
       </div>
 
       <div class="text-center pt-2">
-        <button class="hrms-btn" type="button">Submit</button>
+        <button class="hrms-btn" type="submit">Submit</button>
       </div>
-    </div>
+    </form>
   </div>
 </section>

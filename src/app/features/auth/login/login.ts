@@ -26,7 +26,8 @@ export class LoginComponent {
 
   readonly form = this.fb.group({
     email:    ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]]
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    role:     ['Employee', [Validators.required]]
   });
 
   submit(): void {
@@ -34,7 +35,7 @@ export class LoginComponent {
 
     this.loading = true;
     this.authService.login(
-      this.form.getRawValue() as { email: string; password: string }
+      this.form.getRawValue() as { email: string; password: string; role: string }
     ).subscribe({
       next: (res: AuthResponse) => {
         if (!res.success) {
@@ -44,8 +45,8 @@ export class LoginComponent {
         }
         this.toastr.success('Login successful', 'Success');
 
-        // ── Redirect to returnUrl if guard sent us here, else /customers ──
-        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/customers';
+        // ── Redirect to returnUrl if guard sent us here, else /dashboard ──
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/dashboard';
         this.router.navigateByUrl(returnUrl);
         this.loading = false;
       },
@@ -66,7 +67,7 @@ export class LoginComponent {
           return;
         }
         this.toastr.success('Google login successful', 'Success');
-        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/customers';
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/dashboard';
         this.router.navigateByUrl(returnUrl);
         this.loading = false;
       },
@@ -82,6 +83,10 @@ export class LoginComponent {
   }
 
   hasError(field: 'email' | 'password'): boolean {
+    if (field === 'email') {
+      const c = this.form.get(field);
+      return !!c && c.invalid && (c.touched || c.dirty);
+    }
     const c = this.form.get(field);
     return !!c && c.invalid && (c.touched || c.dirty);
   }

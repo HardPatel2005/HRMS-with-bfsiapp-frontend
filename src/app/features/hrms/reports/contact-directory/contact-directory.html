@@ -1,15 +1,51 @@
 <section class="hrms-page">
+  <app-loading-spinner [isLoading]="loading" message="Loading employee directory..."></app-loading-spinner>
+
   <div class="hrms-panel hrms-panel--framed">
     <h1 class="hrms-title">Employee Contact Directory</h1>
 
     <div class="contact-filter">
-      <label class="visually-hidden" for="employeeSelect">Select Employee</label>
-      <select id="employeeSelect" class="hrms-select contact-filter__control">
-        <option>Select Employee</option>
-        <option>Aarav Patel</option>
-        <option>Neha Shah</option>
-        <option>Krupa Kadia</option>
-      </select>
+      <label class="visually-hidden" for="employeeSearch">Search Employee</label>
+      <input
+        id="employeeSearch"
+        class="hrms-input contact-filter__control"
+        type="text"
+        [(ngModel)]="search"
+        placeholder="Search by name, code, or email"
+      >
+
+      <button class="hrms-btn mt-2" type="button" (click)="loadDirectory()">Search</button>
     </div>
+
+    <table class="hrms-table mt-4">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Designation</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (employees.length > 0) {
+          @for (employee of employees; track employee.id) {
+            <tr>
+              <td>{{ employee.employeeCode }}</td>
+              <td>{{ employee.fullName }}</td>
+              <td>{{ employee.email }}</td>
+              <td>{{ employee.phone || '-' }}</td>
+              <td>{{ employee.designation }}</td>
+              <td>{{ employee.department }}</td>
+            </tr>
+          }
+        } @else {
+          <tr>
+            <td class="hrms-empty" colspan="6">No employees found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
 </section>

@@ -10,6 +10,16 @@
 
           <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
             <div class="mb-3">
+              <label for="role" class="form-label">Role</label>
+              <select id="role" class="form-select" formControlName="role">
+                <option value="Employee">Employee</option>
+                <option value="Manager">Manager</option>
+                <option value="HR">HR</option>
+              </select>
+              <small class="text-muted">Select your employee role for role-based access.</small>
+            </div>
+
+            <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
                 id="email"
