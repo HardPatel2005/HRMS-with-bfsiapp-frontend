@@ -1,105 +1,135 @@
-# BFSIFrontend
+# HRMS Frontend (Angular 21)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+This repository contains the HRMS frontend application built with Angular CLI 21.
 
-## Development server
+Repository URL:
+- https://github.com/HardPatel2005/HRMS-with-bfsiapp-frontend.git
 
-To start a local development server, run:
+Backend repository used by this frontend:
+- https://github.com/HardPatel2005/HRMS-backendapiwith-bfsi.git
+
+## 1. Prerequisites
+
+Install the following tools:
+- Node.js 20+
+- npm 10+
+- Git
+
+Optional:
+- Docker Desktop (for container run)
+
+Verify versions:
+
+```bash
+node -v
+npm -v
+```
+
+## 2. Clone and install
+
+```bash
+git clone https://github.com/HardPatel2005/HRMS-with-bfsiapp-frontend.git
+cd HRMS-with-bfsiapp-frontend
+npm ci
+```
+
+## 3. Configure backend API URL for local run
+
+This frontend reads API URL from:
+- `src/environments/environment.ts`
+
+Current default is:
+
+```ts
+apiUrl: 'https://localhost:44313'
+```
+
+If your backend runs on another port (for example `https://localhost:7254`), update `apiUrl` accordingly.
+
+## 4. Start development server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open:
+- http://localhost:4200
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## 5. Build for production
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Output folder:
+- `dist/BFSI-Frontend`
 
-## Docker
+Production environment file:
+- `src/environments/environment.production.ts`
 
-Build the Docker image:
+Before production build/deploy, set `apiUrl` in that file to your deployed backend URL.
 
-```bash
-docker build -t bfsi-frontend:latest .
-```
+## 6. Run with Docker
 
-Run the container:
-
-```bash
-docker run -d -p 4000:4000 --name bfsi-frontend bfsi-frontend:latest
-```
-
-Open the app at `http://localhost:4000`.
-
-Stop and remove container:
+Build image:
 
 ```bash
-docker stop bfsi-frontend && docker rm bfsi-frontend
+docker build -t hrms-frontend:latest .
 ```
 
-## CI/CD (GitHub Actions)
+Run container:
 
-- CI workflow: `.github/workflows/ci.yml`
-	- Runs on every push and pull request
-	- Installs dependencies, builds app, and runs tests
+```bash
+docker run -d -p 4000:4000 --name hrms-frontend hrms-frontend:latest
+```
 
-- Docker release workflow: `.github/workflows/docker-release.yml`
-	- Runs on tag push like `v1.0.0`
-	- Builds Docker image and pushes to GHCR (`ghcr.io/<owner>/<repo>`)
+Open:
+- http://localhost:4000
 
-Create a release image:
+Stop and remove:
+
+```bash
+docker stop hrms-frontend
+docker rm hrms-frontend
+```
+
+## 7. Tests
+
+Run unit tests:
+
+```bash
+ng test
+```
+
+## 8. CI/CD workflows in this repo
+
+- `.github/workflows/ci.yml`
+	- Runs on push and pull request
+	- Installs dependencies, builds app, runs tests
+
+- `.github/workflows/docker-release.yml`
+	- Runs on tag push such as `v1.0.0`
+	- Builds and pushes Docker image to GHCR
+
+Create a release tag:
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-After that, pull and run the released image:
+## 9. Troubleshooting
 
-```bash
-docker pull ghcr.io/<owner>/<repo>:v1.0.0
-docker run -d -p 4000:4000 ghcr.io/<owner>/<repo>:v1.0.0
-```
+- `401` or API errors:
+	- Check frontend `apiUrl` matches running backend URL/port.
 
-## Running unit tests
+- CORS errors:
+	- Ensure backend allows `http://localhost:4200` in CORS policy.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- Angular build warnings for size/CommonJS:
+	- These are warnings, not hard failures.
 
-```bash
-ng test
-```
+## 10. Related deployment guide
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For Neon + Render + full CI/CD flow, see:
+- `docs/CI_CD_RENDER_NEON_GUIDE.md`

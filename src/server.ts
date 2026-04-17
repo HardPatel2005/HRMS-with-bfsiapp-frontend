@@ -32,8 +32,8 @@ app.use(
 );
 
 // ── All routes handled by Angular SSR ────────────────────────────────────
-// '/*splat' required by path-to-regexp v8 (Express 5) — '/**' is invalid
-app.get('/*splat', createNodeRequestHandler(async (req, res, next) => {
+// '/{*splat}' matches both '/' and nested routes in Express 5.
+app.get('/{*splat}', createNodeRequestHandler(async (req, res, next) => {
   try {
     const response = await engine.handle(req);
     if (response) {
