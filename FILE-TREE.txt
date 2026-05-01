@@ -1,9 +1,4 @@
-├── angular.json
-├── package-lock.json
-├── package.json
-├── public
-│   └── favicon.ico
-├── README.md
+
 ├── src
 │   ├── app
 │   │   ├── app.config.server.ts
@@ -16,57 +11,82 @@
 │   │   ├── app.ts
 │   │   ├── core
 │   │   │   ├── core-module.ts
+│   │   │   ├── guards
+│   │   │   │   └── auth.guard.ts
+│   │   │   ├── interceptors
+│   │   │   │   └── auth.interceptor.ts
 │   │   │   └── services
 │   │   │       ├── api.service.ts
-│   │   │       ├── customer.service.ts
-│   │   │       ├── customer.spec.ts
-│   │   │       └── customer.ts
+│   │   │       ├── auth.service.ts
+
+│   │   │       ├── hrms.service.ts
+│   │   │       └── mf-investing.service.ts
 │   │   ├── features
-│   │   │   └── customer
-│   │   │       ├── customer-detail
-│   │   │       │   ├── customer-detail.html
-│   │   │       │   ├── customer-detail.scss
-│   │   │       │   ├── customer-detail.spec.ts
-│   │   │       │   └── customer-detail.ts
-│   │   │       ├── customer-form
-│   │   │       │   ├── customer-form.html
-│   │   │       │   ├── customer-form.scss
-│   │   │       │   ├── customer-form.spec.ts
-│   │   │       │   └── customer-form.ts
-│   │   │       ├── customer-list
-│   │   │       │   ├── customer-list.html
-│   │   │       │   ├── customer-list.scss
-│   │   │       │   └── customer-list.ts
-│   │   │       ├── customer-module.ts
-│   │   │       └── customer-routing-module.ts
-│   │   ├── models
-│   │   │   └── customer.model.ts
-│   │   └── shared
-│   │       ├── footer
-│   │       │   ├── footer.html
-│   │       │   ├── footer.scss
-│   │       │   ├── footer.spec.ts
-│   │       │   └── footer.ts
-│   │       ├── loading-spinner
-│   │       │   ├── loading-spinner.html
-│   │       │   ├── loading-spinner.scss
-│   │       │   ├── loading-spinner.spec.ts
-│   │       │   └── loading-spinner.ts
-│   │       ├── navbar
-│   │       │   ├── navbar.html
-│   │       │   ├── navbar.scss
-│   │       │   ├── navbar.spec.ts
-│   │       │   └── navbar.ts
-│   │       └── shared-module.ts
-│   ├── environments
-│   │   ├── environment.development.ts
-│   │   └── environment.ts
-│   ├── index.html
-│   ├── main.server.ts
-│   ├── main.ts
-│   ├── server.ts
-│   └── styles.scss
-├── tree_structure.txt
-├── tsconfig.app.json
-├── tsconfig.json
-└── tsconfig.spec.json
+│   │   │   ├── auth
+│   │   │   │   ├── login
+│   │   │   │   │   ├── login.html
+│   │   │   │   │   ├── login.scss
+│   │   │   │   │   └── login.ts
+│   │   │   │   └── register
+│   │   │   │       ├── register.html
+│   │   │   │       ├── register.scss
+│   │   │   │       └── register.ts
+│   │   │   ├── hrms
+│   │   │   │   ├── dashboard
+│   │   │   │   │   ├── dashboard.html
+│   │   │   │   │   ├── dashboard.scss
+│   │   │   │   │   └── dashboard.ts
+│   │   │   │   ├── profile
+│   │   │   │   │   ├── profile.html
+│   │   │   │   │   ├── profile.scss
+│   │   │   │   │   └── profile.ts
+│   │   │   │   ├── reports
+│   │   │   │   │   ├── contact-directory
+│   │   │   │   │   │   ├── contact-directory.html
+│   │   │   │   │   │   ├── contact-directory.scss
+│   │   │   │   │   │   └── contact-directory.ts
+│   │   │   │   │   ├── documents
+│   │   │   │   │   │   ├── documents.html
+│   │   │   │   │   │   ├── documents.scss
+│   │   │   │   │   │   └── documents.ts
+│   │   │   │   │   ├── employees-on-leave
+│   │   │   │   │   │   ├── employees-on-leave.html
+│   │   │   │   │   │   ├── employees-on-leave.scss
+│   │   │   │   │   │   └── employees-on-leave.ts
+│   │   │   │   │   ├── performance-evaluation
+│   │   │   │   │   │   ├── performance-evaluation.html
+│   │   │   │   │   │   ├── performance-evaluation.scss
+│   │   │   │   │   │   └── performance-evaluation.ts
+│   │   │   │   │   ├── reports-routing.ts
+│   │   │   │   │   ├── reports.html
+│   │   │   │   │   ├── reports.scss
+│   │   │   │   │   └── reports.ts
+│   │   │   │   └── utilities
+│   │   │   │       ├── comp-off
+│   │   │   │       │   ├── comp-off.html
+│   │   │   │       │   ├── comp-off.scss
+│   │   │   │       │   └── comp-off.ts
+│   │   │   │       ├── grievance
+│   │   │   │       │   ├── grievance.html
+│   │   │   │       │   ├── grievance.scss
+│   │   │   │       │   └── grievance.ts
+│   │   │   │       ├── leave
+│   │   │   │       │   ├── leave.html
+│   │   │   │       │   ├── leave.scss
+│   │   │   │       │   └── leave.ts
+│   │   │   │       ├── refer-candidate
+│   │   │   │       │   ├── refer-candidate.html
+│   │   │   │       │   ├── refer-candidate.scss
+│   │   │   │       │   └── refer-candidate.ts
+│   │   │   │       ├── resignation
+│   │   │   │       │   ├── resignation.html
+│   │   │   │       │   ├── resignation.scss
+│   │   │   │       │   └── resignation.ts
+│   │   │   │       ├── tasksheet
+│   │   │   │       │   ├── tasksheet.html
+│   │   │   │       │   ├── tasksheet.scss
+│   │   │   │       │   └── tasksheet.ts
+│   │   │   │       ├── utilities-routing.ts
+│   │   │   │       ├── utilities.html
+│   │   │   │       ├── utilities.scss
+│   │   │   │       └── utilities.ts
